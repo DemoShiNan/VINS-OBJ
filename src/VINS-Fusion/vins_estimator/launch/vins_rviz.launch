@@ -1,0 +1,4 @@
+<launch>
+    <node name="rvizvisualisation" pkg="rviz" type="rviz" output="log" args="-d $(find vins)/../config/vins_rviz_config.rviz" />
+    <!-- <node pkg="vins" type="img_x_node" name = "img_process"/> -->
+</launch>
