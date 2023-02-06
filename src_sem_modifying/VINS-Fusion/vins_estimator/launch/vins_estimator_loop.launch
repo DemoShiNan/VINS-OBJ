@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="vins" type="vins_node" name="vins_estimator" args="$(find vins)/../config/openloris/open_d400.yaml" output="screen" launch-prefix="x-terminal-emulator -e gdb -ex run --args "/>
+    <!-- <node pkg="vins" type="vins_node" name="vins_estimator" args="$(find vins)/../config/openloris/open_d400.yaml" output="screen" />    -->
+    <!-- <node pkg="loop_fusion" type="loop_fusion_node" name="loop_fusion" args="$(find vins)/../config/openloris/open_d400.yaml" output="screen" /> -->
+    <!-- <node pkg="vins" type="vins_node" name="vins_estimator" args="$(find vins)/../config/openloris/d435i_mono.yaml" output="screen"/>
+    <node pkg="loop_fusion" type="loop_fusion_node" name="loop_fusion" args="$(find vins)/../config/openloris/d435i_mono.yaml" output="screen" /> -->
+</launch>

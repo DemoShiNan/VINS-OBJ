@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <!-- Camera topic and weights, config and classes files -->
+
+    <!-- <arg name="image_topic"	                default="/image_raw"/> --> 
+
+    <!--when use d435i camera,choose code beneath,when peforming simulation choose code above-->
+    <!-- <arg name="image_topic"	                default="/iris_0/stereo_camera/left/image_raw"/>  -->
+    <!-- <arg name="image_topic"	                default="/camera/color/image_raw"/>  -->
+    <arg name="image_topic"	                default="/d400/color/image_raw"/> 
+
+    <arg name="weights_name"	            default="/home/shinan/catkin_ws/src/Yolov5s/scripts/yolov5/yolov5s.pt"/>
+
+    <!-- Published topics -->
+    <arg name="publish_image"	            default="true"/>
+    <arg name="detected_objects_topic"      default="detected_objects_in_image"/>
+    <arg name="detections_image_topic"      default="detections_image_topic"/>
+    <arg name="img_size"      default="160"/>
+
+    <!-- Detection confidence -->
+    <arg name="confidence"                  default="0.25"/>
+    <arg name="nms_th"                      default="0.45"/>
+    <!-- if you don't have GPU input cpu -->
+    <!-- <arg name="gpu_id"                      default="0"/> -->
+    <arg name="gpu_id"                      default='cpu'/>
+    <!-- Setup class_name, if you want to fine all class input None, ether if you want to input mulitple class input ', ' between classes -->
+    <!-- <arg name="class_name"                  default='None'/> -->
+    <!-- <arg name="class_name"                  default='person'/> -->
+    <arg name="class_name"                  default='person, bicycle, car, motorcycle, airplane, bus, train, truck, boat, traffic light, stop sign, parking meter, bench, bird, cat, dog, chair, couch, bottle, wine glass, cup, laptop, mouse, remote, keyboard, cell phone'/>
+    
+
+    <!-- Node -->
+    <node pkg="yolo_v5s"  type="detector.py" name="detector_manager"   output="screen" respawn="true">
+        <param name="image_topic"               value="$(arg image_topic)"/>
+        <param name="weights_name"              value="$(arg weights_name)"/>
+        <param name="publish_image"             value="$(arg publish_image)"/>
+        <param name="detected_objects_topic"    value="$(arg detected_objects_topic)"/>
+        <param name="detections_image_topic"    value="$(arg detections_image_topic)"/>
+        <param name="img_size"      value="$(arg img_size)"/>
+        <param name="confidence"                value="$(arg confidence)"/>
+        <param name="nms_th"                    value="$(arg nms_th)"/>
+        <param name="gpu_id"                    value="$(arg gpu_id)"/>
+        <param name="class_name"                value="$(arg class_name)"/>
+    </node>
+</launch>
