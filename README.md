@@ -1,1 +1,1 @@
-# Y_V_O-SLAM
+# VINS-OBJ
